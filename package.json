@@ -4,7 +4,8 @@
   "description": "Bazos redesign",
   "main": "index.html",
   "scripts": {
-    "dev": "live-server ."
+    "dev": "live-server .",
+    "dew": "npm run dev"
   },
   "devDependencies": {
     "live-server": "^1.2.2"

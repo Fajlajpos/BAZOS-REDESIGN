@@ -221,4 +221,60 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // 10. Skeleton Loading Animation for Ads
+    const adsGrid = document.getElementById('featured-ads-grid');
+    if (adsGrid) {
+        const realCards = Array.from(adsGrid.querySelectorAll('.ad-card'));
+        
+        // Hide real cards initially
+        realCards.forEach(card => {
+            card.style.display = 'none';
+            card.classList.remove('reveal-up'); // Manually handle reveal
+        });
+        
+        // Create 4 skeletons
+        for (let i = 0; i < 4; i++) {
+            const skeleton = document.createElement('div');
+            skeleton.className = 'skeleton-card liquid-glass';
+            skeleton.innerHTML = `
+                <div class="skeleton-img"></div>
+                <div class="skeleton-content">
+                    <div class="skeleton-line title"></div>
+                    <div class="skeleton-line title" style="width: 60%;"></div>
+                    <div class="skeleton-line meta"></div>
+                    <div class="skeleton-line price"></div>
+                </div>
+            `;
+            adsGrid.appendChild(skeleton);
+        }
+        
+        // Simulate data fetch processing time (2 seconds)
+        setTimeout(() => {
+            // Remove skeletons
+            const skeletons = adsGrid.querySelectorAll('.skeleton-card');
+            skeletons.forEach(s => s.remove());
+            
+            // Show real cards with a stagger animation
+            realCards.forEach((card, index) => {
+                card.style.display = 'flex';
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+                
+                // Keep the stagger timing relative
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                    
+                    // Cleanup inline transition so CSS hover takes over smoothly
+                    setTimeout(() => {
+                        card.style.transition = '';
+                        card.style.transform = '';
+                        card.style.opacity = '';
+                    }, 600);
+                }, index * 100);
+            });
+        }, 2000);
+    }
 });

@@ -110,4 +110,115 @@ document.addEventListener('DOMContentLoaded', () => {
     if (statsSection) {
         statsObserver.observe(statsSection);
     }
+
+    // -------------------------------------------------------------
+    // PREMIUM DETAILS & INTERESTING FEATURES
+    // -------------------------------------------------------------
+
+    // 5. Dynamic Greeting based on time of day
+    const greetingEl = document.getElementById('dynamic-greeting');
+    if (greetingEl) {
+        const hour = new Date().getHours();
+        let greetingPrefix = "";
+        if (hour >= 5 && hour < 12) greetingPrefix = "Dobré ráno. ";
+        else if (hour >= 12 && hour < 18) greetingPrefix = "Dobré odpoledne. ";
+        else if (hour >= 18 && hour < 22) greetingPrefix = "Dobrý večer. ";
+        else greetingPrefix = "Dobrou noc. ";
+        
+        greetingEl.innerHTML = `<span class="greeting-time">${greetingPrefix}</span>Najdi to pravé.`;
+    }
+
+    // 6. Magnetic Elements Effect
+    const magneticElements = document.querySelectorAll('.btn-primary, .btn-search-large, .nav-search-btn');
+    magneticElements.forEach(el => {
+        el.addEventListener('mousemove', (e) => {
+            const rect = el.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            el.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px) scale(1.05)`;
+        });
+        el.addEventListener('mouseleave', () => {
+            el.style.transform = '';
+        });
+    });
+
+    // 7. 3D Tilt Effect on Cards
+    const tiltCards = document.querySelectorAll('.bento-card, .ad-card');
+    tiltCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = ((y - centerY) / centerY) * -5;
+            const rotateY = ((x - centerX) / centerX) * 5;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+        });
+    });
+
+    // 8. Interactive Parallax Orbs (Ambient Background)
+    const orbs = document.querySelectorAll('.orb');
+    window.addEventListener('mousemove', (e) => {
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+        
+        orbs.forEach((orb, index) => {
+            const speed = (index + 1) * 20;
+            const xOffset = (x - 0.5) * speed;
+            const yOffset = (y - 0.5) * speed;
+            orb.style.marginLeft = `${xOffset}px`;
+            orb.style.marginTop = `${yOffset}px`;
+        });
+    });
+
+    // 9. Interactive Favorites & Toast Notifications
+    const toastContainer = document.getElementById('toast-container');
+    
+    function showToast(message, type = 'success') {
+        if (!toastContainer) return;
+        
+        const toast = document.createElement('div');
+        toast.className = `toast liquid-glass toast-${type}`;
+        
+        const icon = type === 'success' ? '🤍' : '💔'; // Using subtle emojis matching the aesthetic
+        toast.innerHTML = `<span class="toast-icon">${icon}</span> ${message}`;
+        
+        toastContainer.appendChild(toast);
+        
+        // Trigger reflow
+        void toast.offsetWidth;
+        toast.classList.add('show');
+        
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => toast.remove(), 400);
+        }, 3000);
+    }
+    
+    const favoritesBtn = document.querySelectorAll('.ad-favorite');
+    favoritesBtn.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            e.stopPropagation();
+            
+            btn.classList.toggle('active');
+            
+            if (btn.classList.contains('active')) {
+                btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="#ef4444" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`;
+                showToast('Přidáno do oblíbených', 'success');
+                btn.style.transform = 'scale(1.3)';
+                setTimeout(() => btn.style.transform = '', 200);
+            } else {
+                btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`;
+                showToast('Odebráno z oblíbených', 'remove');
+            }
+        });
+    });
 });

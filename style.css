@@ -688,11 +688,11 @@ a {
 .card-giant-icon.pt-auto {
     bottom: 10px;
     right: 20px;
-    font-size: clamp(4rem, 7vw, 6rem);
+    font-size: clamp(6rem, 10vw, 8rem);
 }
 
 .card-giant-icon.pt-large {
-    bottom: 0px;
+    bottom: 25px;
     right: 10px;
     font-size: 8rem;
 }

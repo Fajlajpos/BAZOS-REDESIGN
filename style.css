@@ -1204,7 +1204,7 @@ a {
 .footer-socials {
     display: flex;
     gap: 16px;
-    justify-content: center;
+    justify-content: flex-start;
     margin-top: 65px;
 }
 

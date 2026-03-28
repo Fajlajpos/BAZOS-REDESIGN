@@ -1352,6 +1352,12 @@ a {
     align-items: center;
 }
 
+.footer-signature {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .footer-signature img {
     height: 80px;
     width: auto;

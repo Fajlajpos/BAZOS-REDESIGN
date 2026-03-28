@@ -1347,6 +1347,18 @@ a {
     font-weight: 500;
 }
 
+.footer-signature {
+    display: flex;
+    align-items: center;
+}
+
+.footer-signature img {
+    height: 80px;
+    width: auto;
+    mix-blend-mode: multiply;
+    transition: all var(--transition);
+}
+
 /* Animations */
 .reveal-up {
     opacity: 0;

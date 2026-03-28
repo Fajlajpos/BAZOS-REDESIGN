@@ -108,17 +108,79 @@
                         </div>
                     </div>
 
-                    <button type="button" class="btn-search-large">
-                        <div class="search-icon-bg">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    <div class="search-actions">
+                        <button type="button" class="btn-filter" id="filter-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="11" cy="11" r="8"></circle>
-                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                <line x1="4" y1="21" x2="4" y2="14"></line>
+                                <line x1="4" y1="10" x2="4" y2="3"></line>
+                                <line x1="12" y1="21" x2="12" y2="12"></line>
+                                <line x1="12" y1="8" x2="12" y2="3"></line>
+                                <line x1="20" y1="21" x2="20" y2="16"></line>
+                                <line x1="20" y1="12" x2="20" y2="3"></line>
+                                <line x1="1" y1="14" x2="7" y2="14"></line>
+                                <line x1="9" y1="8" x2="15" y2="8"></line>
+                                <line x1="17" y1="16" x2="23" y2="16"></line>
                             </svg>
-                        </div>
-                        <span class="btn-text">Hledat</span>
-                    </button>
+                        </button>
+
+                        <button type="button" class="btn-search-large">
+                            <div class="search-icon-bg">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                            </div>
+                            <span class="btn-text">Hledat</span>
+                        </button>
+                    </div>
                 </form>
+
+                <!-- Filter Dropdown -->
+                <div class="filter-dropdown liquid-glass" id="filter-dropdown">
+                    <div class="filter-dropdown-content">
+                        <div class="filter-grid-dropdown">
+                            <div class="filter-group">
+                                <label>Kategorie</label>
+                                <select class="filter-select">
+                                    <option>Všechny kategorie</option>
+                                    <option>Auto</option>
+                                    <option>Reality</option>
+                                    <option>PC a mobily</option>
+                                    <option>Práce</option>
+                                    <option>Zvířata</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label>Stav a typ</label>
+                                <div class="filter-checkboxes">
+                                    <label class="checkbox-container">
+                                        <input type="checkbox">
+                                        Jen nové zboží
+                                    </label>
+                                    <label class="checkbox-container">
+                                        <input type="checkbox">
+                                        Inzeráty s fotkou
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-group">
+                                <label>Řazení</label>
+                                <select class="filter-select">
+                                    <option>Nejnovější</option>
+                                    <option>Nejlevnější</option>
+                                    <option>Nejdražší</option>
+                                    <option>Nejvzdálenější</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="filter-footer">
+                            <button type="button" class="btn-reset">Resetovat</button>
+                            <button type="button" class="btn-apply" id="apply-filters">Použít filtry</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="popular-searches reveal-up delay-3">
@@ -264,7 +326,7 @@
                 <!-- Ad 1 -->
                 <a href="#" class="ad-card liquid-glass reveal-up">
                     <div class="ad-image"
-                        style="background-image: url('https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?q=80&w=600&auto=format&fit=crop');">
+                        style="background-image: url('https://i.pinimg.com/736x/f4/84/21/f484212ae7b0e02de80cf324b281abc4.jpg');">
                         <div class="ad-badge">Top</div>
                         <button class="ad-favorite pulse-hover">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -287,7 +349,7 @@
                 <!-- Ad 2 -->
                 <a href="#" class="ad-card liquid-glass reveal-up delay-1">
                     <div class="ad-image"
-                        style="background-image: url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=600&auto=format&fit=crop');">
+                        style="background-image: url('https://www.za-odvoz.sk/images/com_adsmanager/contents/darujem-rozkladaci-gauc_105760_2_t.jpg');">
                         <button class="ad-favorite pulse-hover">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -309,7 +371,7 @@
                 <!-- Ad 3 -->
                 <a href="#" class="ad-card liquid-glass reveal-up delay-2">
                     <div class="ad-image"
-                        style="background-image: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=600&auto=format&fit=crop');">
+                        style="background-image: url('https://1gr.cz/fotky/idnes/24/121/cl5/JOG5d46bc2591_opa1.jpg');">
                         <div class="ad-badge">Top</div>
                         <button class="ad-favorite pulse-hover">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -332,7 +394,7 @@
                 <!-- Ad 4 -->
                 <a href="#" class="ad-card liquid-glass reveal-up delay-3">
                     <div class="ad-image"
-                        style="background-image: url('https://images.unsplash.com/photo-1593998066526-65fcab3021a2?q=80&w=600&auto=format&fit=crop');">
+                        style="background-image: url('https://cdn.aukro.cz/images/sk1615839814837/730x548/replica-rolex-submariner-11660lv-40-mm-pohyb-od-eta-miyota-95613106.jpeg');">
                         <button class="ad-favorite pulse-hover">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

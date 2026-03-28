@@ -277,4 +277,48 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }, 2000);
     }
+    // 11. Filter Dropdown Toggle
+    const filterBtn = document.getElementById('filter-btn');
+    const filterDropdown = document.getElementById('filter-dropdown');
+    const applyFiltersBtn = document.getElementById('apply-filters');
+
+    if (filterBtn && filterDropdown) {
+        filterBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            filterDropdown.classList.toggle('show');
+            filterBtn.classList.toggle('active');
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!filterDropdown.contains(e.target) && !filterBtn.contains(e.target)) {
+                filterDropdown.classList.remove('show');
+                filterBtn.classList.remove('active');
+            }
+        });
+
+        // Close on Apply
+        if (applyFiltersBtn) {
+            applyFiltersBtn.addEventListener('click', () => {
+                filterDropdown.classList.remove('show');
+                filterBtn.classList.remove('active');
+                showToast('Filtry byly aplikovány', 'success');
+            });
+        }
+    }
+
+    // Update magnetic elements to include the new button
+    const updatedMagneticElements = document.querySelectorAll('.btn-primary, .btn-search-large, .nav-search-btn, .btn-filter');
+    updatedMagneticElements.forEach(el => {
+        // Remove existing listener if any to avoid duplicates (though here we just re-query)
+        el.addEventListener('mousemove', (e) => {
+            const rect = el.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            el.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px) scale(1.05)`;
+        });
+        el.addEventListener('mouseleave', () => {
+            el.style.transform = '';
+        });
+    });
 });

@@ -695,7 +695,7 @@ a {
         right: 0;
         padding: 20px;
     }
-    
+
     .filter-grid-dropdown {
         grid-template-columns: 1fr;
     }
@@ -1188,8 +1188,8 @@ a {
 }
 
 .footer-brand .small {
-    width: 28px;
-    height: 28px;
+    width: 34px;
+    height: 34px;
 }
 
 .footer-desc {
@@ -1204,24 +1204,43 @@ a {
 .footer-socials {
     display: flex;
     gap: 16px;
+    justify-content: center;
+    margin-top: 65px;
 }
 
 .social-icon {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    place-items: center;
     color: var(--text-primary);
     transition: all var(--transition);
+    line-height: 0;
+    padding: 0;
 }
 
 .social-icon:hover {
     background: var(--primary);
-    color: white;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(255, 90, 0, 0.4);
+    color: black !important;
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(255, 90, 0, 0.3);
+    border-color: var(--primary);
+}
+
+.social-icon:hover svg {
+    stroke: black !important;
+}
+
+.social-icon svg {
+    display: block;
+    margin: 0;
+    transform: translateY(10px); /* Adjusting back down slightly as requested */
+}
+
+/* Fix for liquid-glass inset shadows offsetting small icons */
+.social-icon.liquid-glass {
+    box-shadow: var(--glass-shadow);
 }
 
 .footer-col h4 {
@@ -1253,6 +1272,7 @@ a {
 .newsletter-form {
     display: flex;
     gap: 8px;
+    align-items: stretch;
 }
 
 .newsletter-form input {
@@ -1272,9 +1292,12 @@ a {
 }
 
 .newsletter-form .btn-primary {
-    padding: 0 20px;
+    padding: 12px 24px;
     border-radius: var(--radius-md);
     font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .footer-bottom {
